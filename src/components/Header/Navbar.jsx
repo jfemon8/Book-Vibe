@@ -73,14 +73,14 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to={"/"}>
-            <a className="btn-ghost text-3xl font-bold cursor-pointer group">
+            <div className="btn-ghost text-3xl font-bold cursor-pointer group">
               <span className="group-hover:text-[#23BE0A] transition-colors duration-300">
                 Book
               </span>{" "}
               <span className="group-hover:text-[#59C6D2] transition-colors duration-300">
                 Vibe
               </span>
-            </a>
+            </div>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

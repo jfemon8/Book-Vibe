@@ -11,13 +11,13 @@ const Banner = () => {
             Books to freshen up your bookshelf
           </h1>
           <Link to={"listedBook"}>
-            <a className="btn bg-[#23BE0A] border-[#23BE0A] text-white hover:bg-white hover:text-[#23BE0A] mt-5 lg:mt-10 work-sans">
+            <div className="btn bg-[#23BE0A] border-[#23BE0A] text-white hover:bg-white hover:text-[#23BE0A] mt-5 lg:mt-10 work-sans">
               View The List
-            </a>
+            </div>
           </Link>
         </div>
         <div>
-          <img src={bookImage} alt="Book" className="rounded-2xl" />
+          <img src={bookImage} alt="Book Image" className="rounded-2xl" />
         </div>
       </div>
     </div>

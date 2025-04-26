@@ -7,14 +7,14 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    children:[
-        {index: true,
-        Component: Home
-        },
-        {
-            path:"listedBook",
-            Component: ListedBook
-        }
-    ]
+    children: [
+      { index: true, 
+        Component: Home, 
+        loader: ()=>fetch("booksData.json") },
+      {
+        path: "listedBook",
+        Component: ListedBook,
+      },
+    ],
   },
 ]);
