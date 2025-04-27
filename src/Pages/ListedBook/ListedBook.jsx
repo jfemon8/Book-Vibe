@@ -57,6 +57,29 @@ const ListedBook = () => {
     }
   };
 
+  const handleSort = (sortValue) => {
+    if (sortValue === "rating") {
+      const sortedRead = [...readlist].sort((a, b) => a.rating - b.rating);
+      const sortedWishlist = [...wishlist].sort((a, b) => a.rating - b.rating);
+      setReadlist(sortedRead);
+      setWishlist(sortedWishlist);
+    } else if (sortValue === "page") {
+      const sortedRead = [...readlist].sort(
+        (a, b) => a.totalPages - b.totalPages
+      );
+      const sortedWishlist = [...wishlist].sort((a, b) => a.rating - b.rating);
+      setReadlist(sortedRead);
+      setWishlist(sortedWishlist);
+    } else if (sortValue === "year") {
+      const sortedRead = [...readlist].sort(
+        (a, b) => a.yearOfPublishing - b.yearOfPublishing
+      );
+      const sortedWishlist = [...wishlist].sort((a, b) => a.rating - b.rating);
+      setReadlist(sortedRead);
+      setWishlist(sortedWishlist);
+    }
+  };
+
   return (
     <div className="mx-10 lg:mx-20">
       <ToastContainer />
@@ -81,13 +104,13 @@ const ListedBook = () => {
           style={{ positionAnchor: "--anchor-1" }}
         >
           <li className="text-[#131313]/80">
-            <a>Rating</a>
+            <a onClick={() => handleSort("rating")}>Rating</a>
           </li>
           <li className="text-[#131313]/80">
-            <a>Number of pages</a>
+            <a onClick={() => handleSort("page")}>Number of pages</a>
           </li>
           <li className="text-[#131313]/80">
-            <a>Publisher year</a>
+            <a onClick={() => handleSort("year")}>Publisher year</a>
           </li>
         </ul>
       </div>

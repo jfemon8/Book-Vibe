@@ -31,8 +31,8 @@ const SingleBook = ({ book }) => {
         </h1>
         <p className="text-[#131313] font-medium mt-4">By: {author}</p>
         <div className="mt-4 flex gap-3 flex-wrap items-center">
-          <p className="flex gap-3 flex-wrap items-center">
-            <div className="font-bold">Tag </div>
+          <div className="flex gap-3 flex-wrap items-center">
+            <p className="font-bold">Tag </p>
             {tags.map((tag, index) => (
               <button
                 key={index}
@@ -41,7 +41,7 @@ const SingleBook = ({ book }) => {
                 #{tag}
               </button>
             ))}
-          </p>
+          </div>
           <p className="flex gap-3 items-center text-[#424242]">
             <BookOpenCheck /> Year of Publishing: {yearOfPublishing}
           </p>

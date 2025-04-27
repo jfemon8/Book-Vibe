@@ -96,8 +96,8 @@ const BookDetails = () => {
             <span className="font-bold">Review: </span>
             <span className="opacity-70">{review}</span>
           </p>
-          <p className="mt-4 flex gap-3 flex-wrap items-center">
-            <div className="font-bold">Tag </div>
+          <div className="mt-4 flex gap-3 flex-wrap items-center">
+            <p className="font-bold">Tag </p>
             {tags.map((tag, index) => (
               <button
                 key={index}
@@ -106,7 +106,7 @@ const BookDetails = () => {
                 #{tag}
               </button>
             ))}
-          </p>
+          </div>
           <hr className="my-4 border border-[#131313]/15" />
           <p>
             <span className="text-[#131313]/70">Number of Pages: </span>
