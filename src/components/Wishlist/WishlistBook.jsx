@@ -1,8 +1,7 @@
 import { BookCheck, BookOpenCheck, BookOpenText } from "lucide-react";
 import React from "react";
-import { Link } from "react-router";
 
-const SingleBook = ({ book }) => {
+const WishlistBook = ({ book, handleReadBook }) => {
   const {
     bookId,
     image,
@@ -62,15 +61,17 @@ const SingleBook = ({ book }) => {
           <button className="py-2.5 px-5 rounded-3xl bg-[#FFAC33]/15 text-[#FFAC33]">
             Rating: {rating}
           </button>
-          <Link to={`/bookDetails/${bookId}`}>
-            <button className="py-2 px-5 rounded-3xl bg-[#23BE0A] border border-[#23BE0A] text-white hover:bg-white hover:text-[#23BE0A] cursor-pointer">
-              View Details
-            </button>
-          </Link>
+
+          <button
+            onClick={() => handleReadBook(bookId)}
+            className="py-2 px-5 rounded-3xl bg-[#59C6D2] border border-[#59C6D2] text-white hover:bg-white hover:text-[#59C6D2] cursor-pointer"
+          >
+            Read
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default SingleBook;
+export default WishlistBook;

@@ -1,23 +1,65 @@
 import { ChevronDown } from "lucide-react";
-import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useLoaderData } from "react-router";
-import { getData } from "../../utilities/manageLocalStorage";
+import {
+  getData,
+  removeData,
+  setData,
+} from "../../utilities/manageLocalStorage";
 import ReadBooks from "../../components/ReadBooks/ReadBooks";
+import WishlistBooks from "../../components/wishlist/wishlistBooks";
+import { toast, ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
 
 const ListedBook = () => {
   const allBooks = useLoaderData();
+  const [readlist, setReadlist] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
 
-  const readlist = allBooks.filter((book) =>
-    getData("read")?.includes(book.bookId)
-  );
-  const wishlist = allBooks.filter((book) =>
-    getData("wishlist")?.includes(book.bookId)
-  );
+  useEffect(() => {
+    const readlisted = allBooks.filter((book) =>
+      getData("read")?.includes(book.bookId)
+    );
+    setReadlist(readlisted);
+
+    const wishlisted = allBooks.filter((book) =>
+      getData("wishlist")?.includes(book.bookId)
+    );
+    setWishlist(wishlisted);
+  }, [allBooks]);
+
+  const readNotify = () => toast("This book is already added to Read list!");
+
+  const handleReadBook = (id) => {
+    const readData = getData("read");
+    const wishlistData = getData("wishlist");
+    if (readData.includes(id)) {
+      readNotify();
+      return;
+    }
+    if (wishlistData.includes(id)) {
+      removeData(id, "wishlist");
+      setWishlist((wishlist) => wishlist.filter((book) => book.bookId !== id));
+    }
+    setData(id, "read");
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Book has been added to Read",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    const addedBook = allBooks.find((book) => book.bookId === id);
+    if (addedBook) {
+      setReadlist((readlist) => [...readlist, addedBook]);
+    }
+  };
 
   return (
     <div className="mx-10 lg:mx-20">
+      <ToastContainer />
       <div className="bg-[#131313]/5 rounded-2xl mt-8 p-8">
         <h1 className="work-sans font-bold text-3xl text-[#131313] text-center">
           Books
@@ -54,14 +96,17 @@ const ListedBook = () => {
         <Tabs>
           <TabList>
             <Tab>Read Books</Tab>
-            <Tab>Whitelist Books</Tab>
+            <Tab>Wishlist Books</Tab>
           </TabList>
 
           <TabPanel>
             <ReadBooks readlist={readlist}></ReadBooks>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <WishlistBooks
+              wishlist={wishlist}
+              handleReadBook={handleReadBook}
+            ></WishlistBooks>
           </TabPanel>
         </Tabs>
       </div>
