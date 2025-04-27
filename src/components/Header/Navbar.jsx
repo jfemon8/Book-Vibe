@@ -29,7 +29,7 @@ const Navbar = () => {
         Listed Books
       </NavLink>
       <NavLink
-        to={"/o"}
+        to={"/meter"}
         className={({ isActive }) =>
           `lg:mx-2 px-4 py-2 rounded-lg transition-all duration-300 hover:text-[#23be0a] ${
             isActive

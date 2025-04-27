@@ -22,4 +22,8 @@ const removeDataFromLocalStorage = (id, listName) => {
     localStorage.setItem(listName, stringifyData);
 }
 
-export { setDataToLocalStorage as setData, getDataFromLocalStorage as getData, removeDataFromLocalStorage as removeData }
+const removeAllDataFromLocalStorage = (listKey) => {
+    localStorage.setItem(listKey, "");
+}
+
+export { setDataToLocalStorage as setData, getDataFromLocalStorage as getData, removeDataFromLocalStorage as removeData, removeAllDataFromLocalStorage as removeAll }
