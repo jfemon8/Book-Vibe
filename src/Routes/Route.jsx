@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import ListedBook from "../Pages/ListedBook/ListedBook";
 import BookDetails from "../Pages/BookDetails/BookDetails";
 import Meter from "../Pages/Meter/Meter";
+import NotFound from "../Pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
         path: "meter",
         Component: Meter,
         loader: () => fetch("/booksData.json").then((res) => res.json()),
+      },
+      {
+        path: "*",
+        Component: NotFound,
       },
     ],
   },
